@@ -1,0 +1,17 @@
+version: "2.2"
+services:
+  nginx-cache:
+    # image: '${REGISTRY_BASE_URL}/booksclub/api-cache:1.0.0'
+    image: 'valentinvieriu/booksclub:api-cache-1.0.0'
+    build: .
+    restart: always
+    environment: 
+      CACHE_SOURCE_1: ${NGINX_CACHE_SOURCE_1}
+    working_dir: /app
+    # volumes:
+      # - ${ROOT_FOLDER}/config/mime.types:/etc/nginx/conf.d/mime.types
+      # - ${ROOT_FOLDER}/config/apicache.conf:/app/apicache.conf
+      # - ${ROOT_FOLDER}/cache:/app/cache
+    # ports:
+    #   - ${PORT}:${PORT}
+    command: /bin/sh -c "envsubst '$$CACHE_SOURCE_1' < /app/apicache.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
