@@ -2,7 +2,7 @@ version: "2.2"
 services:
   nginx-cache:
     # image: '${REGISTRY_BASE_URL}/booksclub/api-cache:1.0.0'
-    image: 'valentinvieriu/booksclub:api-cache-1.0.0'
+    image: 'valentinvieriu/booksclub:api-cache-1.0.1'
     build: .
     restart: always
     environment: 
